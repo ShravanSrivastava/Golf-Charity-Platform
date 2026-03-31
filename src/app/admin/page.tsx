@@ -1,4 +1,20 @@
 'use client'
+import {
+  Users,
+  Trophy,
+  DollarSign,
+  BarChart2,
+  Heart,
+  CheckCircle,
+  XCircle,
+  Clock,
+  Star,
+  Trash2,
+  PlayCircle,
+  Send,
+  UserCheck,
+  AlertCircle,
+} from "lucide-react";
 import { BrandLogoLink } from "@/components/Logo";
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -197,10 +213,53 @@ export default function AdminPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          fontFamily: "'DM Sans',sans-serif",
         }}
       >
-        <div style={{ color: "#22c55e", fontSize: 24 }}>
-          ⛳ Loading Admin...
+        <style>{`
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .loader-ring { width:56px; height:56px; border-radius:50%; border:2px solid rgba(34,197,94,0.15); border-top-color:#22c55e; animation:spin 0.9s linear infinite; }
+  `}</style>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 24,
+            animation: "fadeIn .5s ease both",
+          }}
+        >
+          <BrandLogoLink size={32} />
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div className="loader-ring" />
+            <div
+              style={{
+                position: "absolute",
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                background: "#22c55e",
+              }}
+            />
+          </div>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.3)",
+              fontSize: 13,
+              letterSpacing: ".06em",
+              textTransform: "uppercase",
+            }}
+          >
+            Loading admin panel
+          </p>
         </div>
       </main>
     );
@@ -329,23 +388,51 @@ export default function AdminPage() {
               }}
             >
               {[
-                { label: "Total users", value: users.length, icon: "👥" },
-                { label: "Active subscribers", value: activeUsers, icon: "✅" },
+                {
+                  label: "Total users",
+                  value: users.length,
+                  icon: <Users size={22} color="#22c55e" />,
+                },
+                {
+                  label: "Active subscribers",
+                  value: activeUsers,
+                  icon: <CheckCircle size={22} color="#22c55e" />,
+                },
                 {
                   label: "Monthly revenue",
                   value: `£${totalRevenue.toFixed(2)}`,
-                  icon: "💰",
+                  icon: <DollarSign size={22} color="#22c55e" />,
                 },
-                { label: "Total draws", value: draws.length, icon: "🎰" },
-                { label: "Total winners", value: winners.length, icon: "🏆" },
+                {
+                  label: "Total draws",
+                  value: draws.length,
+                  icon: <BarChart2 size={22} color="#22c55e" />,
+                },
+                {
+                  label: "Total winners",
+                  value: winners.length,
+                  icon: <Trophy size={22} color="#22c55e" />,
+                },
                 {
                   label: "Active charities",
                   value: charities.filter((c) => c.is_active).length,
-                  icon: "❤️",
+                  icon: <Heart size={22} color="#22c55e" />,
                 },
               ].map((stat) => (
                 <div key={stat.label} className="card fade">
-                  <div style={{ fontSize: 28, marginBottom: 8 }}>
+                  <div
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 12,
+                      background: "rgba(34,197,94,0.1)",
+                      border: "1px solid rgba(34,197,94,0.15)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: 16,
+                    }}
+                  >
                     {stat.icon}
                   </div>
                   <div
@@ -371,8 +458,40 @@ export default function AdminPage() {
                 Recent Draws
               </div>
               {draws.length === 0 ? (
-                <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 14 }}>
-                  No draws yet. Go to Draws tab to run one.
+                <div style={{ textAlign: "center", padding: "60px 0" }}>
+                  <div
+                    style={{
+                      width: 64,
+                      height: 64,
+                      borderRadius: 20,
+                      background: "rgba(34,197,94,0.08)",
+                      border: "1px solid rgba(34,197,94,0.15)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 16px",
+                    }}
+                  >
+                    <BarChart2 size={28} color="rgba(34,197,94,0.5)" />
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 500,
+                      color: "rgba(255,255,255,0.3)",
+                    }}
+                  >
+                    No draws yet
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: "rgba(255,255,255,0.15)",
+                      marginTop: 6,
+                    }}
+                  >
+                    Click Run Draw Simulation above.
+                  </div>
                 </div>
               ) : (
                 <table>
@@ -566,7 +685,15 @@ export default function AdminPage() {
                 disabled={drawLoading}
                 className="btn-green"
               >
-                {drawLoading ? "Running..." : "🎰 Run Draw Simulation"}
+                {drawLoading ? (
+                  "Running..."
+                ) : (
+                  <div
+                    style={{ display: "flex", alignItems: "center", gap: 8 }}
+                  >
+                    <PlayCircle size={18} /> Run Draw Simulation
+                  </div>
+                )}
               </button>
             </div>
 
@@ -817,15 +944,40 @@ export default function AdminPage() {
             </div>
             <div className="card fade">
               {winners.length === 0 ? (
-                <div
-                  style={{
-                    textAlign: "center",
-                    padding: "60px 0",
-                    color: "rgba(255,255,255,0.25)",
-                  }}
-                >
-                  <div style={{ fontSize: 48, marginBottom: 16 }}>🏆</div>
-                  <div>No winners yet. Run and publish a draw first.</div>
+                <div style={{ textAlign: "center", padding: "60px 0" }}>
+                  <div
+                    style={{
+                      width: 64,
+                      height: 64,
+                      borderRadius: 20,
+                      background: "rgba(34,197,94,0.08)",
+                      border: "1px solid rgba(34,197,94,0.15)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      margin: "0 auto 16px",
+                    }}
+                  >
+                    <Trophy size={28} color="rgba(34,197,94,0.5)" />
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 16,
+                      fontWeight: 500,
+                      color: "rgba(255,255,255,0.3)",
+                    }}
+                  >
+                    No winners yet
+                  </div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: "rgba(255,255,255,0.15)",
+                      marginTop: 6,
+                    }}
+                  >
+                    Run and publish a draw first.
+                  </div>
                 </div>
               ) : (
                 <table>
@@ -903,16 +1055,61 @@ export default function AdminPage() {
                               </button>
                             </>
                           )}
+                          {w.verification_status === "pending" && (
+                            <>
+                              <button
+                                className="btn-ghost"
+                                style={{
+                                  color: "#22c55e",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 4,
+                                }}
+                                onClick={() =>
+                                  updateWinner(
+                                    w.id,
+                                    "verification_status",
+                                    "approved",
+                                  )
+                                }
+                              >
+                                <CheckCircle size={13} /> Approve
+                              </button>
+                              <button
+                                className="btn-ghost"
+                                style={{
+                                  color: "#f87171",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 4,
+                                }}
+                                onClick={() =>
+                                  updateWinner(
+                                    w.id,
+                                    "verification_status",
+                                    "rejected",
+                                  )
+                                }
+                              >
+                                <XCircle size={13} /> Reject
+                              </button>
+                            </>
+                          )}
                           {w.verification_status === "approved" &&
                             w.payment_status === "pending" && (
                               <button
                                 className="btn-ghost"
-                                style={{ color: "#fbbf24" }}
+                                style={{
+                                  color: "#fbbf24",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: 4,
+                                }}
                                 onClick={() =>
                                   updateWinner(w.id, "payment_status", "paid")
                                 }
                               >
-                                Mark Paid
+                                <Send size={13} /> Mark Paid
                               </button>
                             )}
                         </td>

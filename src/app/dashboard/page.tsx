@@ -107,24 +107,97 @@ export default function DashboardPage() {
   };
 
   if (loading) {
-   return (
-     <main
-       style={{
-         minHeight: "100vh",
-         background: "#080c08",
-         display: "flex",
-         alignItems: "center",
-         justifyContent: "center",
-       }}
-     >
-       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-         <GolfLogo size={32} />
-         <span style={{ color: "#22c55e", fontSize: 18, fontWeight: 600 }}>
-           Loading...
-         </span>
-       </div>
-     </main>
-   );
+    return (
+      <main
+        style={{
+          minHeight: "100vh",
+          background: "#080c08",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "'DM Sans',sans-serif",
+        }}
+      >
+        <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap');
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes pulse { 0%,100% { opacity:.4; } 50% { opacity:1; } }
+        .loader-ring {
+          width: 56px; height: 56px; border-radius: 50%;
+          border: 2px solid rgba(34,197,94,0.15);
+          border-top-color: #22c55e;
+          animation: spin 0.9s linear infinite;
+        }
+        .loader-dot {
+          width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+          animation: pulse 1.2s ease-in-out infinite;
+        }
+        .loader-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loader-dot:nth-child(3) { animation-delay: 0.4s; }
+      `}</style>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 28,
+            animation: "fadeIn .5s ease both",
+          }}
+        >
+          {/* Logo */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <GolfLogo size={36} />
+            <span
+              style={{
+                fontSize: 22,
+                fontWeight: 700,
+                color: "#fff",
+                letterSpacing: "-.02em",
+              }}
+            >
+              Golf<span style={{ color: "#22c55e" }}>Gives</span>
+            </span>
+          </div>
+          {/* Spinner */}
+          <div
+            style={{
+              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <div className="loader-ring" />
+            <div
+              style={{
+                position: "absolute",
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                background: "#22c55e",
+              }}
+            />
+          </div>
+          {/* Dots */}
+          <div style={{ display: "flex", gap: 8 }}>
+            <div className="loader-dot" />
+            <div className="loader-dot" />
+            <div className="loader-dot" />
+          </div>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.3)",
+              fontSize: 13,
+              letterSpacing: ".06em",
+              textTransform: "uppercase",
+            }}
+          >
+            Loading your dashboard
+          </p>
+        </div>
+      </main>
+    );
   }
 
   const avgScore = scores.length
@@ -164,7 +237,8 @@ export default function DashboardPage() {
       {/* Navbar */}
       <Navbar />
 
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
+      <div
+        style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 24px 40px" }}>
         {/* Header */}
         <div className="fade" style={{ marginBottom: 40 }}>
           <div
