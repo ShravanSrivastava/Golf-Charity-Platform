@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe, PLANS } from "@/lib/stripe";
+import Stripe from "stripe";
 import { createClient } from "@/lib/supabase/server";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+
+const PLANS = {
+  monthly: {
+    priceId: process.env.STRIPE_MONTHLY_PRICE_ID!,
+  },
+  yearly: {
+    priceId: process.env.STRIPE_YEARLY_PRICE_ID!,
+  },
+};
 
 export async function POST(req: NextRequest) {
   try {
@@ -8,7 +19,6 @@ export async function POST(req: NextRequest) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-
     if (!user)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
@@ -17,7 +27,6 @@ export async function POST(req: NextRequest) {
     if (!planConfig)
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
 
-    // Get or create Stripe customer
     const { data: sub } = await supabase
       .from("subscriptions")
       .select("stripe_customer_id")
@@ -46,6 +55,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (err: any) {
+    console.error("Stripe error:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }

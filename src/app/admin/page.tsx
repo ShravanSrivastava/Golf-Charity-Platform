@@ -400,7 +400,7 @@ export default function AdminPage() {
                 },
                 {
                   label: "Monthly revenue",
-                  value: `£${totalRevenue.toFixed(2)}`,
+                  value: `$${totalRevenue.toFixed(2)}`,
                   icon: <DollarSign size={22} color="#22c55e" />,
                 },
                 {
@@ -534,7 +534,7 @@ export default function AdminPage() {
                           </div>
                         </td>
                         <td style={{ color: "#22c55e" }}>
-                          £{d.jackpot_amount}
+                          ${d.jackpot_amount}
                         </td>
                         <td>
                           <span
@@ -756,13 +756,13 @@ export default function AdminPage() {
                           </div>
                         </td>
                         <td style={{ color: "#22c55e", fontWeight: 600 }}>
-                          £{d.jackpot_amount}
+                          ${d.jackpot_amount}
                         </td>
                         <td style={{ color: "rgba(255,255,255,0.6)" }}>
-                          £{d.pool_4match}
+                          ${d.pool_4match}
                         </td>
                         <td style={{ color: "rgba(255,255,255,0.6)" }}>
-                          £{d.pool_3match}
+                          ${d.pool_3match}
                         </td>
                         <td>
                           <span
@@ -1008,7 +1008,7 @@ export default function AdminPage() {
                           </span>
                         </td>
                         <td style={{ color: "#22c55e", fontWeight: 600 }}>
-                          £{w.prize_amount}
+                          ${w.prize_amount}
                         </td>
                         <td>
                           <span

@@ -131,7 +131,7 @@ function SubscribePage() {
             {
               id: "monthly",
               name: "Monthly",
-              price: "£9.99",
+              price: "$9.99",
               period: "/month",
               badge: null,
               features: [
@@ -144,7 +144,7 @@ function SubscribePage() {
             {
               id: "yearly",
               name: "Yearly",
-              price: "£99.99",
+              price: "$99.99",
               period: "/year",
               badge: "2 months free",
               features: [
@@ -248,7 +248,7 @@ function SubscribePage() {
         <button onClick={handleSubscribe} disabled={loading} className="btn">
           {loading
             ? "Redirecting to payment..."
-            : `Subscribe — ${plan === "monthly" ? "£9.99/month" : "£99.99/year"} →`}
+            : `Subscribe — ${plan === "monthly" ? "$9.99/month" : "$99.99/year"} →`}
         </button>
 
         <p

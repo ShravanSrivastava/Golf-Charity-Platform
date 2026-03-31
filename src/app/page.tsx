@@ -189,7 +189,7 @@ export default function HomePage() {
               className="btn-primary"
               style={{ fontSize: 16, padding: "16px 32px" }}
             >
-              Start for £9.99/month <ArrowRight size={18} />
+              Start for $9.99/month <ArrowRight size={18} />
             </Link>
             <Link
               href="#how-it-works"
@@ -220,10 +220,10 @@ export default function HomePage() {
           }}
         >
           {[
-            { value: "£50K+", label: "Prize pool distributed" },
+            { value: "$50K+", label: "Prize pool distributed" },
             { value: "2,400+", label: "Active members" },
             { value: "12", label: "Charity partners" },
-            { value: "£30K+", label: "Donated to charity" },
+            { value: "$30K+", label: "Donated to charity" },
           ].map((s, i) => (
             <div key={s.label} className={`reveal reveal-delay-${i + 1}`}>
               <div className="stat-num">{s.value}</div>
@@ -515,7 +515,7 @@ export default function HomePage() {
             {[
               {
                 name: "Monthly",
-                price: "£9.99",
+                price: "$9.99",
                 period: "/month",
                 featured: false,
                 href: "/signup?plan=monthly",
@@ -528,7 +528,7 @@ export default function HomePage() {
               },
               {
                 name: "Yearly",
-                price: "£99.99",
+                price: "$99.99",
                 period: "/year",
                 featured: true,
                 href: "/signup?plan=yearly",
@@ -761,7 +761,7 @@ export default function HomePage() {
             },
             {
               icon: <Heart size={22} color="#22c55e" />,
-              label: "£30K+ donated to charity",
+              label: "$30K+ donated to charity",
             },
             {
               icon: <Trophy size={22} color="#22c55e" />,

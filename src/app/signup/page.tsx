@@ -439,7 +439,7 @@ export default function SignupPage() {
                 {
                   id: "monthly",
                   name: "Monthly",
-                  price: "£9.99",
+                  price: "$9.99",
                   period: "/month",
                   badge: null,
                   features: [
@@ -451,7 +451,7 @@ export default function SignupPage() {
                 {
                   id: "yearly",
                   name: "Yearly",
-                  price: "£99.99",
+                  price: "$99.99",
                   period: "/year",
                   badge: "2 months free",
                   features: [
