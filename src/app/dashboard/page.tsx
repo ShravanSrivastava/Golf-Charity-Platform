@@ -1,4 +1,6 @@
 "use client";
+import { GolfLogo } from "@/components/Logo";
+import { Navbar } from "@/components/Navbar";
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -105,19 +107,24 @@ export default function DashboardPage() {
   };
 
   if (loading) {
-    return (
-      <main
-        style={{
-          minHeight: "100vh",
-          background: "#080c08",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div style={{ color: "#22c55e", fontSize: 24 }}>⛳ Loading...</div>
-      </main>
-    );
+   return (
+     <main
+       style={{
+         minHeight: "100vh",
+         background: "#080c08",
+         display: "flex",
+         alignItems: "center",
+         justifyContent: "center",
+       }}
+     >
+       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+         <GolfLogo size={32} />
+         <span style={{ color: "#22c55e", fontSize: 18, fontWeight: 600 }}>
+           Loading...
+         </span>
+       </div>
+     </main>
+   );
   }
 
   const avgScore = scores.length
@@ -155,51 +162,7 @@ export default function DashboardPage() {
       `}</style>
 
       {/* Navbar */}
-      <nav
-        style={{
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          padding: "0 32px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: 64,
-          position: "sticky",
-          top: 0,
-          background: "rgba(8,12,8,0.9)",
-          backdropFilter: "blur(12px)",
-          zIndex: 50,
-        }}
-      >
-        <div style={{ fontSize: 20, fontWeight: 700, color: "#22c55e" }}>
-          ⛳ GolfGives
-        </div>
-        <div style={{ display: "flex", gap: 8 }}>
-          {["overview", "scores", "draws", "charity"].map((t) => (
-            <button
-              key={t}
-              className={`tab ${activeTab === t ? "active" : ""}`}
-              onClick={() => setActiveTab(t)}
-            >
-              {t.charAt(0).toUpperCase() + t.slice(1)}
-            </button>
-          ))}
-        </div>
-        <button
-          onClick={handleLogout}
-          style={{
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            color: "rgba(255,255,255,0.5)",
-            padding: "8px 16px",
-            borderRadius: 8,
-            cursor: "pointer",
-            fontSize: 14,
-            fontFamily: "inherit",
-          }}
-        >
-          Sign out
-        </button>
-      </nav>
+      <Navbar />
 
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "40px 24px" }}>
         {/* Header */}

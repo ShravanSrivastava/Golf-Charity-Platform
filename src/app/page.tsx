@@ -1,4 +1,6 @@
 "use client";
+import { Navbar } from "@/components/Navbar";
+import { BrandLogoLink } from "@/components/Logo";
 import Link from "next/link";
 import { useReveal } from "@/lib/useReveal";
 import {
@@ -66,102 +68,7 @@ export default function HomePage() {
       `}</style>
 
       {/* Navbar */}
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          width: "100%",
-          zIndex: 50,
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
-          background: "rgba(8,12,8,0.85)",
-          backdropFilter: "blur(16px)",
-          padding: "0 40px",
-          height: 68,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#22c55e" strokeWidth="1.5" />
-            <circle cx="12" cy="12" r="3" fill="#22c55e" />
-            <line
-              x1="12"
-              y1="2"
-              x2="12"
-              y2="6"
-              stroke="#22c55e"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <line
-              x1="12"
-              y1="18"
-              x2="12"
-              y2="22"
-              stroke="#22c55e"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <line
-              x1="2"
-              y1="12"
-              x2="6"
-              y2="12"
-              stroke="#22c55e"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <line
-              x1="18"
-              y1="12"
-              x2="22"
-              y2="12"
-              stroke="#22c55e"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span
-            style={{
-              fontSize: 20,
-              fontWeight: 700,
-              color: "#fff",
-              letterSpacing: "-.02em",
-            }}
-          >
-            Golf<span style={{ color: "#22c55e" }}>Gives</span>
-          </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <Link
-            href="/charities"
-            style={{
-              color: "rgba(255,255,255,0.5)",
-              fontSize: 14,
-              textDecoration: "none",
-              padding: "8px 12px",
-            }}
-          >
-            Charities
-          </Link>
-          <Link
-            href="/login"
-            className="btn-secondary"
-            style={{ padding: "9px 20px", fontSize: 14 }}
-          >
-            Sign in
-          </Link>
-          <Link
-            href="/signup"
-            className="btn-primary"
-            style={{ padding: "9px 20px", fontSize: 14 }}
-          >
-            Join now
-          </Link>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero */}
       <section
@@ -956,10 +863,7 @@ export default function HomePage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#22c55e" strokeWidth="1.5" />
-            <circle cx="12" cy="12" r="3" fill="#22c55e" />
-          </svg>
+          <BrandLogoLink size={22} />
           <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 14 }}>
             © 2026 GolfGives · Play Golf. Change Lives.
           </span>

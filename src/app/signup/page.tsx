@@ -1,4 +1,5 @@
 "use client";
+import { BrandLogoLink } from "@/components/Logo";
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
@@ -167,18 +168,7 @@ export default function SignupPage() {
           }}
         />
         <div style={{ position: "relative", zIndex: 1 }}>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <div
-              style={{
-                fontSize: 28,
-                fontWeight: 700,
-                color: "#22c55e",
-                marginBottom: 60,
-              }}
-            >
-              ⛳ GolfGives
-            </div>
-          </Link>
+          <BrandLogoLink size={32} />
           <div
             style={{
               fontFamily: "'Playfair Display',serif",

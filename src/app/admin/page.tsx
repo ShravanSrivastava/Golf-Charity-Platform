@@ -1,4 +1,5 @@
 'use client'
+import { BrandLogoLink } from "@/components/Logo";
 import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
@@ -259,9 +260,7 @@ export default function AdminPage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: "#22c55e" }}>
-            ⛳ GolfGives
-          </div>
+          <BrandLogoLink size={26} />
           <span
             style={{
               background: "rgba(234,179,8,0.15)",
