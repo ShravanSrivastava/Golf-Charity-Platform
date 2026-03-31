@@ -71,7 +71,7 @@ export default function LoginPage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "60px",
+          padding: "60px 56px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -160,11 +160,11 @@ export default function LoginPage() {
       <div
         style={{
           width: "100%",
-          maxWidth: 480,
+          maxWidth: 520,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "48px 40px",
+          padding: "48px 56px",
           borderLeft: "1px solid rgba(255,255,255,0.06)",
         }}
       >

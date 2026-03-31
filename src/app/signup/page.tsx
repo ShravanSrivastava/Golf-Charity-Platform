@@ -254,11 +254,11 @@ export default function SignupPage() {
       <div
         style={{
           width: "100%",
-          maxWidth: 500,
+          maxWidth: 540,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "48px 40px",
+          padding: "48px 56px",
           borderLeft: "1px solid rgba(255,255,255,0.06)",
           overflowY: "auto",
         }}
